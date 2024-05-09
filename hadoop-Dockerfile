@@ -23,5 +23,4 @@ RUN cp $hadoopbak/core-site.xml $hadoopconf/core-site.xml && \
     cp $hadoopbak/mapred-site.xml $hadoopconf/mapred-site.xml && \
     cp $hadoopbak/yarn-site.xml $hadoopconf/yarn-site.xml && \
     cp $hadoopbak/workers $hadoopconf/workers
-RUN . ~/.bashrc
-
+RUN /bin/bash -c ". ~/.bashrc"

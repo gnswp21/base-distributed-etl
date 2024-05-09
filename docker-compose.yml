@@ -1,0 +1,63 @@
+services:
+  namenode:
+    image: myhadoop
+    container_name: namenode
+#    volumes:
+#      - hdfs-name:/root/hadoop/hdfs/name
+#      - hdfs-logs:/root/hadoop/logs
+    networks:
+      mynetwork:
+    ports:
+      - 9870:9870
+    command: ["sh", "-c", "service ssh start; tail -f /dev/null"]
+
+
+  secondarynamenode:
+    image: myhadoop
+    container_name: secondarynamenode
+#    volumes:
+#      - hdfs-name:/root/hadoop/hdfs/name
+#      - hdfs-logs:/root/hadoop/logs
+    networks:
+      mynetwork:
+    ports:
+      - 9868:9868
+    command: ["sh", "-c", "service ssh start; tail -f /dev/null"]
+
+  datanode1:
+    image: myhadoop
+    container_name: datanode1
+#    volumes:
+#      - hdfs-data:/root/hadoop/hdfs/data
+#      - hdfs-logs:/root/hadoop/logs
+    networks:
+      mynetwork:
+    command: ["sh", "-c", "service ssh start; tail -f /dev/null"]
+
+  datanode2:
+    image: myhadoop
+    container_name: datanode2
+#    volumes:
+#      - hdfs-data:/root/hadoop/hdfs/data
+#      - hdfs-logs:/root/hadoop/logs
+    networks:
+      mynetwork:
+    command: [ "sh", "-c", "service ssh start; tail -f /dev/null" ]
+
+  datanode3:
+    image: myhadoop
+    container_name: datanode3
+#    volumes:
+#      - hdfs-data:/root/hadoop/hdfs/data
+#      - hdfs-logs:/root/hadoop/logs
+    networks:
+      mynetwork:
+    command: [ "sh", "-c", "service ssh start; tail -f /dev/null" ]
+
+
+volumes:
+  hdfs-name:
+  hdfs-data:
+  hdfs-logs:
+networks:
+  mynetwork:
