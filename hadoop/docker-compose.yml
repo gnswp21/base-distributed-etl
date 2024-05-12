@@ -1,11 +1,10 @@
 services:
   namenode1:
-    image: namenode1
+    image: myhadoop
     container_name: namenode1
     volumes:
       - hdfs-name1:/root/hadoop/hdfs/name
       - hdfs-logs:/root/hadoop/logs
-      - hdfs-journal1:/root/hadoop/hdfs/journal
 
     networks:
       mynetwork:
@@ -14,34 +13,33 @@ services:
     command: ["sh", "-c", "service ssh start;
               tail -f /dev/null"]
 
-
   namenode2:
-    image: namenode2
-    container_name: namenode2
+    image: myhadoop
+    container_name: secondarynamenode
     volumes:
       - hdfs-name2:/root/hadoop/hdfs/name
       - hdfs-logs:/root/hadoop/logs
-      - hdfs-journal2:/root/hadoop/hdfs/journal
+
     networks:
       mynetwork:
     ports:
-      - 9871:9870
-    command: ["sh", "-c", "service ssh start;
-              tail -f /dev/null"]
+      - 9868:9868
+    command: [ "sh", "-c", "service ssh start;
+              tail -f /dev/null" ]
+
 
   resourcemanager:
-    image: resourcemanager
+    image: myhadoop
     container_name: resourcemanager
     volumes:
       - hdfs-logs:/root/hadoop/logs
-      - hdfs-journal3:/root/hadoop/hdfs/journal
     networks:
       mynetwork:
     command: [ "sh", "-c", "service ssh start;
               tail -f /dev/null" ]
 
   datanode1:
-    image: myhahadoop
+    image: myhadoop
     container_name: datanode1
     volumes:
       - hdfs-data1:/root/hadoop/hdfs/data
@@ -52,7 +50,7 @@ services:
               tail -f /dev/null"]
 
   datanode2:
-    image: myhahadoop
+    image: myhadoop
     container_name: datanode2
     volumes:
       - hdfs-data2:/root/hadoop/hdfs/data
@@ -63,7 +61,7 @@ services:
                   tail -f /dev/null" ]
 
   datanode3:
-    image: myhahadoop
+    image: myhadoop
     container_name: datanode3
     volumes:
       - hdfs-data3:/root/hadoop/hdfs/data
@@ -80,9 +78,7 @@ volumes:
   hdfs-data1:
   hdfs-data2:
   hdfs-data3:
-  hdfs-journal1:
-  hdfs-journal2:
-  hdfs-journal3:
+  zookeeper-logs:
   hdfs-logs:
 
 networks:
