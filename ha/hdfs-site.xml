@@ -51,7 +51,7 @@
     </property>
     <property>
         <name>dfs.namenode.shared.edits.dir</name>
-        <value>qjournal://datanode1:8485;datanode2:8485;datanode3:8485/mycluster</value>
+        <value>qjournal://namenode1:8485;namenode2:8485;resourcemanager:8485/mycluster</value>
     </property>
     <property>
         <name>dfs.client.failover.proxy.provider.mycluster</name>

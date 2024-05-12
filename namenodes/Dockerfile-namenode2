@@ -1,0 +1,3 @@
+FROM myhahadoop
+RUN echo "2" > /var/lib/zookeeper/myid
+RUN apt install psmisc

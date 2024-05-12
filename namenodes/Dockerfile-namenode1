@@ -1,0 +1,6 @@
+FROM myhahadoop
+RUN echo "1" > /var/lib/zookeeper/myid
+RUN apt install psmisc
+COPY cluster-init.sh cluster-init.sh
+COPY cluster-restart.sh cluster-restart.sh
+

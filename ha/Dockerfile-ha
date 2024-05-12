@@ -1,0 +1,21 @@
+FROM myhadoop
+WORKDIR /root
+COPY apache-zookeeper-3.8.4.tar.gz /root/apache-zookeeper-3.8.4.tar.gz
+RUN tar xzf apache-zookeeper-3.8.4.tar.gz
+RUN rm *.gz
+RUN ln -s apache-zookeeper-3.8.4-bin zookeeper
+COPY zoo.cfg /root/apache-zookeeper-3.8.4-bin/conf/zoo.cfg
+COPY .bashrc /root/.bashrc
+
+
+ARG hadoopbak=/root/hadoop/hadoopbak
+ARG hadoophome=/root/hadoop
+ARG hadoopconf=$hadoophome/etc/hadoop
+
+COPY core-site.xml $hadoopbak
+COPY hdfs-site.xml $hadoopbak
+RUN cp $hadoopbak/core-site.xml $hadoopconf/core-site.xml && \
+    cp $hadoopbak/hdfs-site.xml $hadoopconf/hdfs-site.xml
+
+RUN /bin/bash -c ". ~/.bashrc"
+RUN mkdir -p /var/lib/zookeeper

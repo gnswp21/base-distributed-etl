@@ -1,0 +1,21 @@
+services:
+  zk1:
+    image: myzk
+    container_name: zoo1
+    networks:
+      myzknet:
+    command: ["sh", "-c", "service ssh start; tail -f /dev/null"]
+  zk2:
+    image: myzk
+    container_name: zoo2
+    networks:
+      myzknet:
+    command: ["sh", "-c", "service ssh start; tail -f /dev/null"]
+  zk3:
+    image: myzk
+    container_name: zoo3
+    networks:
+      myzknet:
+    command: ["sh", "-c", "service ssh start; tail -f /dev/null"]
+networks:
+  myzknet:

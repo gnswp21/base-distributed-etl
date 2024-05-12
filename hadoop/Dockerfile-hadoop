@@ -7,16 +7,13 @@ RUN tar zxvf hadoop-3.3.6.tar.gz && \
 RUN mkdir -p ~/hadoop/hdfs/name && \
     mkdir -p ~/hadoop/hdfs/data
 
-COPY ./hadoop /root/hadoop/hadoopbak
+COPY . /root/hadoop/hadoopbak
 ARG hadoopbak=/root/hadoop/hadoopbak
 ARG hadoophome=/root/hadoop
 ARG hadoopconf=$hadoophome/etc/hadoop
 
 
-RUN cat $hadoopbak/bash >> ~/.bashrc
-
-RUN echo "export JAVA_HOME=/usr/lib/jvm/jdk" >> $hadoopconf/hadoop-env.sh && \
-    echo "export JAVA_HOME=/usr/lib/jvm/jdk" >> $hadoopconf/yarn-env.sh
+COPY .bashrc /root/.bashrc
 
 RUN cp $hadoopbak/core-site.xml $hadoopconf/core-site.xml && \
     cp $hadoopbak/hdfs-site.xml $hadoopconf/hdfs-site.xml && \

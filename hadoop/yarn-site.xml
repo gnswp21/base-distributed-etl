@@ -3,7 +3,7 @@
     <!-- Site specific YARN configuration properties -->
     <property>
         <name>yarn.resourcemanager.hostname</name>
-        <value>namenode1</value>
+        <value>resourcemanager</value>
     </property>
     <property>
         <name>yarn.nodemanager.aux-services</name>
