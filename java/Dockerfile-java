@@ -1,11 +1,13 @@
 FROM ubuntu:20.04
 # Copy Jav deb 파일
-COPY ./java /root/java
+COPY . /root/java
 
-# install java
 ARG version=jdk-11.0.10_linux-x64_bin.deb
 
 
 RUN apt update && \
-    apt install -y libasound2
+    apt install -y libasound2 && \
+    apt install nano
+
+ # install java
 RUN sh /root/java/install-java.sh $version

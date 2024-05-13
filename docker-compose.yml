@@ -1,0 +1,99 @@
+services:
+  namenode1:
+    image: namenode1
+    container_name: namenode1
+    volumes:
+      - hdfs-name1:/root/hadoop/hdfs/name
+      - hdfs-logs:/root/hadoop/logs
+      - hdfs-journal1:/root/hadoop/hdfs/journal
+      - zookeeper1:/var/lib/zookeeper
+      - zookeeper-logs:/root/zookeeper/logs
+
+    networks:
+      mynetwork:
+    ports:
+      - 9870:9870
+    command: ["sh", "-c", "service ssh start;
+              tail -f /dev/null"]
+
+
+  namenode2:
+    image: namenode2
+    container_name: namenode2
+    volumes:
+      - hdfs-name2:/root/hadoop/hdfs/name
+      - hdfs-logs:/root/hadoop/logs
+      - hdfs-journal2:/root/hadoop/hdfs/journal
+      - zookeeper2:/var/lib/zookeeper
+      - zookeeper-logs:/root/zookeeper/logs
+    networks:
+      mynetwork:
+    ports:
+      - 9871:9870
+    command: ["sh", "-c", "service ssh start;
+              tail -f /dev/null"]
+
+  resourcemanager:
+    image: resourcemanager
+    container_name: resourcemanager
+    volumes:
+      - hdfs-logs:/root/hadoop/logs
+      - hdfs-journal3:/root/hadoop/hdfs/journal
+      - zookeeper3:/var/lib/zookeeper
+      - zookeeper-logs:/root/zookeeper/logs
+    networks:
+      mynetwork:
+    command: [ "sh", "-c", "service ssh start;
+              tail -f /dev/null" ]
+
+  datanode1:
+    image: myhahadoop
+    container_name: datanode1
+    volumes:
+      - hdfs-data1:/root/hadoop/hdfs/data
+      - hdfs-logs:/root/hadoop/logs
+    networks:
+      mynetwork:
+    command: ["sh", "-c", "service ssh start;
+              tail -f /dev/null"]
+
+  datanode2:
+    image: myhahadoop
+    container_name: datanode2
+    volumes:
+      - hdfs-data2:/root/hadoop/hdfs/data
+      - hdfs-logs:/root/hadoop/logs
+    networks:
+      mynetwork:
+    command: [ "sh", "-c", "service ssh start;
+                  tail -f /dev/null" ]
+
+  datanode3:
+    image: myhahadoop
+    container_name: datanode3
+    volumes:
+      - hdfs-data3:/root/hadoop/hdfs/data
+      - hdfs-logs:/root/hadoop/logs
+    networks:
+      mynetwork:
+    command: [ "sh", "-c", "service ssh start;
+                  tail -f /dev/null" ]
+
+
+volumes:
+  hdfs-name1:
+  hdfs-name2:
+  hdfs-data1:
+  hdfs-data2:
+  hdfs-data3:
+  hdfs-journal1:
+  hdfs-journal2:
+  hdfs-journal3:
+  zookeeper1:
+  zookeeper2:
+  zookeeper3:
+  zookeeper-logs:
+  hdfs-logs:
+
+networks:
+  mynetwork:

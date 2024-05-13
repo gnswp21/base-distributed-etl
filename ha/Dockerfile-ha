@@ -1,0 +1,23 @@
+FROM myhadoop
+WORKDIR /root
+# install zookeeper
+COPY apache-zookeeper-3.8.4.tar.gz /root/apache-zookeeper-3.8.4.tar.gz
+RUN tar xzf apache-zookeeper-3.8.4.tar.gz
+RUN rm *.gz # delete used gz
+RUN ln -s apache-zookeeper-3.8.4-bin zookeeper
+
+# copy zookeeper configs
+COPY zoo.cfg /root/apache-zookeeper-3.8.4-bin/conf/zoo.cfg
+COPY .bashrc /root/.bashrc
+
+# copy ha with zookeepr configs
+ARG hadoophome=/root/hadoop
+ARG hadoopconf=$hadoophome/etc/hadoop
+COPY core-site.xml $hadoopconf/core-site.xml
+COPY hdfs-site.xml $hadoopconf/hdfs-site.xml
+
+# source .bashrc
+RUN /bin/bash -c ". ~/.bashrc"
+
+# make dir to indicate id of zookeeper server
+RUN mkdir -p /var/lib/zookeeper

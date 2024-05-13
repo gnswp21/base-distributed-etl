@@ -1,0 +1,8 @@
+FROM myhahadoop
+COPY cluster-init.sh cluster-init.sh
+COPY cluster-restart.sh cluster-restart.sh
+
+RUN echo "1" > /var/lib/zookeeper/myid # to indicate zookeeper server id
+RUN apt install psmisc # for auto fense?
+
+

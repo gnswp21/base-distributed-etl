@@ -1,0 +1,2 @@
+FROM myhahadoop
+RUN echo "3" > /var/lib/zookeeper/myid

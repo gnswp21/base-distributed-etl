@@ -1,0 +1,25 @@
+FROM myssh
+WORKDIR /root
+# install hadoop
+RUN apt -y install curl
+RUN curl https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz --output hadoop-3.3.6.tar.gz
+RUN tar zxvf hadoop-3.3.6.tar.gz && \
+    ln -s hadoop-3.3.6 hadoop
+RUN mkdir -p ~/hadoop/hdfs/name && \
+    mkdir -p ~/hadoop/hdfs/data && \
+    mkdir -p ~/hadoop/hdfs/journal && \
+    mkdir -p ~/hadoop/logs
+
+# copy .bashrc for ENV variables
+COPY .bashrc /root/.bashrc
+
+# copy hadoop configurations
+ARG hadoophome=/root/hadoop
+ARG hadoopconf=$hadoophome/etc/hadoop
+COPY core-site.xml $hadoopconf/core-site.xml
+COPY hdfs-site.xml $hadoopconf/hdfs-site.xml
+COPY mapred-site.xml $hadoopconf/mapred-site.xml
+COPY yarn-site.xml $hadoopconf/yarn-site.xml
+COPY workers $hadoopconf/workers
+
+RUN /bin/bash -c ". ~/.bashrc"
