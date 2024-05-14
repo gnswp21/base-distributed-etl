@@ -1,4 +1,4 @@
-# local-Distributed-ETL
+
 Distributed ETL 프로젝트의 개발용 로컬버전
 
 아래 벨로그글에 프로젝트에 대한 자세한 설명이 되어 있습니다.
