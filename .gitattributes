@@ -1,6 +1,7 @@
 *.sh text eol=lf
 *.xml text eol=lf
 *.conf text eol=lf
+*.properties text eol=lf
 .bashrc text eol=lf
 zoo.cfg text eol=lf
 workers text eol=lf

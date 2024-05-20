@@ -25,4 +25,7 @@ echo Built resourcemanager image.
 docker build -t datanode -f datanode/Dockerfile-datanode datanode
 echo Built datanode image.
 
+docker build -t mykafka .
+echo Built datanode image.
+
 echo All Docker images have been built successfully.
