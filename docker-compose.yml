@@ -10,7 +10,7 @@ services:
       - zookeeper-logs:/root/zookeeper/logs
 
     networks:
-      mynetwork:
+      base-distributed-etl-network:
     ports:
       - 9870:9870
     command: ["sh", "-c", "service ssh start;
@@ -27,7 +27,7 @@ services:
       - zookeeper2:/var/lib/zookeeper
       - zookeeper-logs:/root/zookeeper/logs
     networks:
-      mynetwork:
+      base-distributed-etl-network:
     ports:
       - 9871:9870
     command: ["sh", "-c", "service ssh start;
@@ -45,7 +45,7 @@ services:
       - zookeeper3:/var/lib/zookeeper
       - zookeeper-logs:/root/zookeeper/logs
     networks:
-      mynetwork:
+      base-distributed-etl-network:
     command: [ "sh", "-c", "service ssh start;
               tail -f /dev/null" ]
 
@@ -58,7 +58,7 @@ services:
       - hdfs-data1:/root/hadoop/hdfs/data
       - hdfs-logs:/root/hadoop/logs
     networks:
-      mynetwork:
+      base-distributed-etl-network:
     command: ["sh", "-c", "service ssh start;
               tail -f /dev/null"]
 
@@ -71,7 +71,7 @@ services:
       - hdfs-data2:/root/hadoop/hdfs/data
       - hdfs-logs:/root/hadoop/logs
     networks:
-      mynetwork:
+      base-distributed-etl-network:
     command: [ "sh", "-c", "service ssh start;
               tail -f /dev/null" ]
 
@@ -85,7 +85,7 @@ services:
       - hdfs-data3:/root/hadoop/hdfs/data
       - hdfs-logs:/root/hadoop/logs
     networks:
-      mynetwork:
+      base-distributed-etl-network:
     command: [ "sh", "-c", "service ssh start;
               tail -f /dev/null" ]
 
@@ -106,4 +106,4 @@ volumes:
   hdfs-logs:
 
 networks:
-  mynetwork:
+  base-distributed-etl-network:
