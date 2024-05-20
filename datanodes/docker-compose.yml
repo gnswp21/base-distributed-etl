@@ -1,8 +1,0 @@
-services:
-  myspark:
-    image: myspark
-    container_name: srk
-    ports:
-      - 4040:4040
-      - 4041:4041
-    command: ["sh", "-c", "tail -f /dev/null"]

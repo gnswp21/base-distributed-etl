@@ -22,4 +22,7 @@ echo Built namenode2 image.
 docker build -t resourcemanager -f resourcemanager/Dockerfile-resourcemanager resourcemanager
 echo Built resourcemanager image.
 
+docker build -t datanode -f datanode/Dockerfile-datanode datanode
+echo Built datanode image.
+
 echo All Docker images have been built successfully.

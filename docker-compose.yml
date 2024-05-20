@@ -36,6 +36,9 @@ services:
   resourcemanager:
     image: resourcemanager
     container_name: resourcemanager
+    ports:
+      - 4039:4040
+      - 8088:8088
     volumes:
       - hdfs-logs:/root/hadoop/logs
       - hdfs-journal3:/root/hadoop/hdfs/journal
@@ -47,8 +50,10 @@ services:
               tail -f /dev/null" ]
 
   datanode1:
-    image: myhahadoop
+    image: datanode
     container_name: datanode1
+    ports:
+      - 4040:4040
     volumes:
       - hdfs-data1:/root/hadoop/hdfs/data
       - hdfs-logs:/root/hadoop/logs
@@ -58,26 +63,31 @@ services:
               tail -f /dev/null"]
 
   datanode2:
-    image: myhahadoop
+    image: datanode
     container_name: datanode2
+    ports:
+      - 4041:4040
     volumes:
       - hdfs-data2:/root/hadoop/hdfs/data
       - hdfs-logs:/root/hadoop/logs
     networks:
       mynetwork:
     command: [ "sh", "-c", "service ssh start;
-                  tail -f /dev/null" ]
+              tail -f /dev/null" ]
+
 
   datanode3:
-    image: myhahadoop
+    image: datanode
     container_name: datanode3
+    ports:
+      - 4042:4040
     volumes:
       - hdfs-data3:/root/hadoop/hdfs/data
       - hdfs-logs:/root/hadoop/logs
     networks:
       mynetwork:
     command: [ "sh", "-c", "service ssh start;
-                  tail -f /dev/null" ]
+              tail -f /dev/null" ]
 
 
 volumes:
