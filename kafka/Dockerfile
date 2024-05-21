@@ -11,6 +11,6 @@ RUN apt-get install -y netcat
 
 COPY server.properties /root/kafka/config/server.properties
 COPY zookeeper.properties /root/config/kafka/zookeeper.properties
-COPY kafka-init.sh /root/kafka/kafka-ids.sh
+COPY kafka-init.sh /root/kafka/kafka-init.sh
 
 WORKDIR /root/kafka
