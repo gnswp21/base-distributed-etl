@@ -7,6 +7,11 @@ ssh mykafka2 echo '"brokers.id=2" >> /root/kafka/config/server.properties'
 ssh mykafka2 mkdir -p /var/lib/zookeeper
 ssh mykafka2 echo '"2" > /var/lib/zookeeper/myid'
 
+# For zookeeper3
+ssh mykafka2 echo '"brokers.id=3" >> /root/kafka/config/server.properties'
+ssh mykafka2 mkdir -p /var/lib/zookeeper
+ssh mykafka2 echo '"3" > /var/lib/zookeeper/myid'
+
 # run
 ssh mykafka1 "/root/kafka/bin/zookeeper-server-start.sh -daemon /root/kafka/config/zookeeper.properties"
 ssh mykafka2 "/root/kafka/bin/zookeeper-server-start.sh -daemon /root/kafka/config/zookeeper.properties"
