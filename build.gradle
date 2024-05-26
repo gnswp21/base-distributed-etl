@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group = 'com.example'
@@ -9,6 +11,26 @@ repositories {
     mavenCentral()
 }
 
+
+
 dependencies {
-    implementation 'org.apache.hadoop:hadoop-client-api:3.3.6'
+    implementation 'org.apache.hadoop:hadoop-client:3.3.6'
+//    implementation 'org.apache.hadoop:hadoop-common:3.3.6'
+//    implementation 'org.apache.hadoop:hadoop-hdfs:3.3.6'
+//    implementation 'com.fasterxml.woodstox:woodstox-core:6.5.0'
+//    implementation 'org.codehaus.woodstox:stax2-api:4.2.1'
+
+}
+application {
+    mainClass = 'com.example.load.DataUploader2Hdfs'
+}
+shadowJar {
+    mergeServiceFiles()
+    archiveFileName = "${project.name}-all.jar"
+    zip64 true // zip64 확장 활성화
+//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+jar {
+    enabled = false
 }
