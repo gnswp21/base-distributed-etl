@@ -29,16 +29,15 @@ public class Tester {
 
         // Kafka로 데이터프레임을 전송
         try {
-            StreamingQuery query = jsonDF
-                    .writeStream()
-                    .format("kafka")
-                    .option("kafka.bootstrap.servers", "localhost:9092")
-                    .option("topic", "webtoon-topic")
-                    .option("checkpointLocation", "/tmp/kafka-checkpoints")
-                    .start();
+            jsonDF
+                .write()
+                .format("kafka")
+                .option("kafka.bootstrap.servers", "mykafka1:9092")
+                .option("topic", "webtoon-topic")
+                .option("checkpointLocation", "/tmp/kafka-checkpoints")
+                .save();
 
-            query.awaitTermination();
-        } catch (StreamingQueryException | TimeoutException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

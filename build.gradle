@@ -20,9 +20,16 @@ dependencies {
 //    implementation 'com.fasterxml.woodstox:woodstox-core:6.5.0'
 //    implementation 'org.codehaus.woodstox:stax2-api:4.2.1'
 
+    // spark
+    implementation 'org.apache.spark:spark-core_2.13:3.4.3'
+    implementation 'org.apache.spark:spark-sql_2.13:3.4.3'
+
+    // spark to kafka
+    implementation 'org.apache.spark:spark-sql-kafka-0-10_2.13:3.4.3'
+
 }
 application {
-    mainClass = 'com.example.load.DataUploader2Hdfs'
+    mainClass = 'com.example.load.Tester'
 }
 shadowJar {
     mergeServiceFiles()
@@ -32,5 +39,9 @@ shadowJar {
 }
 
 jar {
-    enabled = false
+    enabled = true
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
