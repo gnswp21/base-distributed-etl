@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+
+
+dependencies {
+    // hadoop
+    implementation 'org.apache.hadoop:hadoop-client:3.3.6'
+//    implementation 'org.apache.hadoop:hadoop-common:3.3.6'
+//    implementation 'org.apache.hadoop:hadoop-hdfs:3.3.6'
+
+
+    // spark
+    implementation 'org.apache.spark:spark-core_2.13:3.4.3'
+    implementation 'org.apache.spark:spark-sql_2.13:3.4.3'
+
+    // spark to kafka
+    implementation 'org.apache.spark:spark-sql-kafka-0-10_2.13:3.4.3'
+
+
+}
+application {
+    mainClass = 'com.example.load.Tester'
+}
+shadowJar {
+    mergeServiceFiles()
+    archiveFileName = "${project.name}-all.jar"
+    zip64 true // zip64 확장 활성화
+//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+jar {
+    enabled = true
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+

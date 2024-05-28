@@ -8,11 +8,14 @@ services:
       - hdfs-journal1:/root/hadoop/hdfs/journal
       - zookeeper1:/var/lib/zookeeper
       - zookeeper-logs:/root/zookeeper/logs
+      - data:/root/data
 
     networks:
-      mynetwork:
+      base-distributed-etl-network:
     ports:
       - 9870:9870
+      - 9002:9000
+      - 5005:5005
     command: ["sh", "-c", "service ssh start;
               tail -f /dev/null"]
 
@@ -27,58 +30,93 @@ services:
       - zookeeper2:/var/lib/zookeeper
       - zookeeper-logs:/root/zookeeper/logs
     networks:
-      mynetwork:
+      base-distributed-etl-network:
     ports:
       - 9871:9870
+      - 9001:9000
     command: ["sh", "-c", "service ssh start;
               tail -f /dev/null"]
 
   resourcemanager:
     image: resourcemanager
     container_name: resourcemanager
+    ports:
+      - 4039:4040
+      - 8088:8088
     volumes:
       - hdfs-logs:/root/hadoop/logs
       - hdfs-journal3:/root/hadoop/hdfs/journal
       - zookeeper3:/var/lib/zookeeper
       - zookeeper-logs:/root/zookeeper/logs
     networks:
-      mynetwork:
+      base-distributed-etl-network:
     command: [ "sh", "-c", "service ssh start;
               tail -f /dev/null" ]
 
   datanode1:
-    image: myhahadoop
+    image: datanode
     container_name: datanode1
+    ports:
+      - 4040:4040
     volumes:
       - hdfs-data1:/root/hadoop/hdfs/data
       - hdfs-logs:/root/hadoop/logs
     networks:
-      mynetwork:
+      base-distributed-etl-network:
     command: ["sh", "-c", "service ssh start;
               tail -f /dev/null"]
 
   datanode2:
-    image: myhahadoop
+    image: datanode
     container_name: datanode2
+    ports:
+      - 4041:4040
     volumes:
       - hdfs-data2:/root/hadoop/hdfs/data
       - hdfs-logs:/root/hadoop/logs
     networks:
-      mynetwork:
+      base-distributed-etl-network:
     command: [ "sh", "-c", "service ssh start;
-                  tail -f /dev/null" ]
+              tail -f /dev/null" ]
+
 
   datanode3:
-    image: myhahadoop
+    image: datanode
     container_name: datanode3
+    ports:
+      - 4042:4040
     volumes:
       - hdfs-data3:/root/hadoop/hdfs/data
       - hdfs-logs:/root/hadoop/logs
     networks:
-      mynetwork:
+      base-distributed-etl-network:
     command: [ "sh", "-c", "service ssh start;
-                  tail -f /dev/null" ]
+              tail -f /dev/null" ]
 
+
+  mykafka1:
+    image: mykafka
+    container_name: mykafka1
+    networks:
+      base-distributed-etl-network:
+    command: [ "sh", "-c", "service ssh start;
+              tail -f /dev/null" ]
+
+
+  mykafka2:
+    image: mykafka
+    container_name: mykafka2
+    networks:
+      base-distributed-etl-network:
+    command: [ "sh", "-c", "service ssh start;
+              tail -f /dev/null" ]
+  mykafka3:
+    image: mykafka
+    container_name: mykafka3
+    networks:
+      base-distributed-etl-network:
+    command: [ "sh", "-c", "service ssh start;
+              tail -f /dev/null" ]
 
 volumes:
   hdfs-name1:
@@ -94,6 +132,7 @@ volumes:
   zookeeper3:
   zookeeper-logs:
   hdfs-logs:
+  data:
 
 networks:
-  mynetwork:
+  base-distributed-etl-network:

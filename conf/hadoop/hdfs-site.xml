@@ -23,4 +23,9 @@
         <name>dfs.namenode.rpc-bind-host</name>
         <value>0.0.0.0</value>
     </property>
+
+    <property>
+        <name>dfs.client.use.datanode.hostname</name>
+        <value>true</value>
+    </property>
 </configuration>
