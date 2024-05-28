@@ -21,20 +21,6 @@ public class HdfsProcessor {
     }
 
     public void writeToHdfs(String localSrc, String dst) throws IOException {
-//        InputStream in = null;
-//        OutputStream out = null;
-//        try {
-//            in = new BufferedInputStream(new FileInputStream(localSrc));
-//            out = fs.create(new Path(dst), new Progressable() {
-//                public void progress() {
-//                    System.out.print(".");
-//                }
-//            });
-//            IOUtils.copyBytes(in, out, 4096, true);
-//
-//        } finally {
-//            IOUtils.closeStream(in);
-//            IOUtils.closeStream(out);
 
         InputStream in = null;
         OutputStream out = null;
@@ -65,7 +51,7 @@ public class HdfsProcessor {
             IOUtils.closeStream(out);
             System.out.println("Streams closed.");
         }
-        }
+    }
 
     public void readHdfs(String filename) throws IOException {
         Path filePath = new Path("/" + filename);
