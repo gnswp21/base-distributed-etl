@@ -19,6 +19,5 @@ WORKDIR $SPARK_HOME
 
 # COPY jar 파일
 COPY webtoon-data.csv /root/spark/data/webtoon-data.csv
-COPY *.jar /root/spark/go.jar
 
 
