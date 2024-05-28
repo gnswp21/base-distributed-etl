@@ -12,7 +12,7 @@ public class SparkTester {
         // read dataframe from HDFS
         Dataset<Row> df = sp.readDF("hdfs://mycluster/data/webtoon-data.csv");
 
-        // svae DF to hdfs
+        // save DF to hdfs
         sp.saveDF2Hdfs(df);
 
         // send DF to kafka brokers as topic

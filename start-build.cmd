@@ -26,6 +26,6 @@ docker build -t datanode -f conf/datanode/Dockerfile-datanode conf/datanode
 echo Built datanode image.
 
 docker build -t mykafka -f conf/kafka/Dockerfile-kafka conf/kafka
-echo Built datanode image.
+echo Built kafka image.
 
 echo All Docker images have been built successfully.
