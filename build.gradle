@@ -14,11 +14,11 @@ repositories {
 
 
 dependencies {
+    // hadoop
     implementation 'org.apache.hadoop:hadoop-client:3.3.6'
 //    implementation 'org.apache.hadoop:hadoop-common:3.3.6'
 //    implementation 'org.apache.hadoop:hadoop-hdfs:3.3.6'
-//    implementation 'com.fasterxml.woodstox:woodstox-core:6.5.0'
-//    implementation 'org.codehaus.woodstox:stax2-api:4.2.1'
+
 
     // spark
     implementation 'org.apache.spark:spark-core_2.13:3.4.3'
@@ -26,6 +26,7 @@ dependencies {
 
     // spark to kafka
     implementation 'org.apache.spark:spark-sql-kafka-0-10_2.13:3.4.3'
+
 
 }
 application {
@@ -45,3 +46,4 @@ jar {
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
+
