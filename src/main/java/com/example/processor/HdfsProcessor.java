@@ -44,7 +44,7 @@ public class HdfsProcessor {
             IOUtils.copyBytes(in, out, 4096, true);
             System.out.println("Finished copying bytes.");
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             IOUtils.closeStream(in);
