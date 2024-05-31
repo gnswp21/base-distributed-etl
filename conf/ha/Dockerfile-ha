@@ -1,7 +1,7 @@
 FROM myhadoop
 WORKDIR /root
 # install zookeeper
-COPY apache-zookeeper-3.8.4.tar.gz /root/apache-zookeeper-3.8.4.tar.gz
+RUN curl https://dlcdn.apache.org/zookeeper/zookeeper-3.8.4/apache-zookeeper-3.8.4-bin.tar.gz --output apache-zookeeper-3.8.4.tar.gz
 RUN tar xzf apache-zookeeper-3.8.4.tar.gz
 RUN rm *.gz # delete used gz
 RUN ln -s apache-zookeeper-3.8.4-bin zookeeper
