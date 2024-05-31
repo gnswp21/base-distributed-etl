@@ -133,3 +133,7 @@ https://github.com/gnswp21/base-distributed-etl
     ```
 
 
+### 추가
+더 자세한 설명은 다음 글에서 확인할 수 있습니다.
+1. 노션(가독성) : https://www.notion.so/brioblog/ETL-base-distributed-etl-e39b5254d51c42188aaee16bb294f3d6#90d94c745ab04dbd978172365fa14bee
+2. 벨로그(빠른로딩)(미구현)
