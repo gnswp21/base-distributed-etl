@@ -1,7 +1,7 @@
 FROM myhahadoop
 
 # install spark
-COPY *.tgz spark-3.4.3-bin-hadoop3-scala2.13.tgz
+RUN curl https://dlcdn.apache.org/spark/spark-3.4.3/spark-3.4.3-bin-hadoop3-scala2.13.tgz --output spark-3.4.3-bin-hadoop3-scala2.13.tgz
 RUN tar xvf spark-3.4.3-bin-hadoop3-scala2.13.tgz && rm *.tgz
 RUN ln -s spark-3.4.3-bin-hadoop3-scala2.13 spark
 
