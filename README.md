@@ -23,3 +23,12 @@ sh cluster-init.sh
 
 # 하둡 jar로 실행
 hadoop jar app.jar com.example.main
+
+
+# spakr-submit
+spark-submit \
+--class com.example.load.SparkTester \
+--master yarn \
+--deploy-mode client \
+--conf spark.driver.host=resourcemanager \
+app.jar
