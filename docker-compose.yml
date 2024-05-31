@@ -14,7 +14,6 @@ services:
       base-distributed-etl-network:
     ports:
       - 9870:9870
-      - 9002:9000
       - 5005:5005
     command: ["sh", "-c", "service ssh start;
               tail -f /dev/null"]
@@ -33,7 +32,6 @@ services:
       base-distributed-etl-network:
     ports:
       - 9871:9870
-      - 9001:9000
     command: ["sh", "-c", "service ssh start;
               tail -f /dev/null"]
 
@@ -41,7 +39,6 @@ services:
     image: resourcemanager
     container_name: resourcemanager
     ports:
-      - 4039:4040
       - 8088:8088
     volumes:
       - hdfs-logs:/root/hadoop/logs
@@ -58,7 +55,6 @@ services:
     image: datanode
     container_name: datanode1
     ports:
-      - 4040:4040
     volumes:
       - hdfs-data1:/root/hadoop/hdfs/data
       - hdfs-logs:/root/hadoop/logs
@@ -71,7 +67,6 @@ services:
     image: datanode
     container_name: datanode2
     ports:
-      - 4041:4040
     volumes:
       - hdfs-data2:/root/hadoop/hdfs/data
       - hdfs-logs:/root/hadoop/logs
@@ -85,7 +80,6 @@ services:
     image: datanode
     container_name: datanode3
     ports:
-      - 4042:4040
     volumes:
       - hdfs-data3:/root/hadoop/hdfs/data
       - hdfs-logs:/root/hadoop/logs
