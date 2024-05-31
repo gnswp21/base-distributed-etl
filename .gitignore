@@ -1,6 +1,6 @@
 # Ignore .tgz files
 *.tgz
-*.csv
+
 
 # Ignore IntelliJ IDEA project files
 .idea/
