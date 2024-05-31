@@ -3,6 +3,7 @@ package com.example.processor;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
+import org.apache.spark.sql.functions;
 
 public class SparkProcessor {
     SparkSession spark;
@@ -51,8 +52,29 @@ public class SparkProcessor {
 
     }
 
-    public void saveDF2Hdfs(Dataset<Row> df){
+    public void saveDF2Hdfs(Dataset<Row> df, String filename){
         df.write().format("csv").mode("overwrite").option("sep", "\t")
-                .save("/data/webtoon-data-copy.csv");
+                .save("/data/" + filename);
+    }
+
+    public  Dataset<Row> preprocessDf(Dataset<Row> df){
+
+        // 1. 제목(Name) 결측치 찾기
+        Dataset<Row> missingTitles = df.filter(functions.col("Name").isNull());
+        missingTitles.show();
+
+        // 2. 제목 길이 새로운 열 추가 및 Name이 null이 아닌 행만 선택
+        Dataset<Row> dfWithLength = df.withColumn("titleLength", functions.length(functions.col("Name")))
+                .filter(functions.col("Name").isNotNull());
+
+        // "Rating" 열 숫자 형식으로 변환
+        Dataset<Row> dfWithNumeric = dfWithLength
+                .withColumn("Rating", functions.col("Rating").cast("double"));
+
+        // 필요한 열 선택
+        Dataset<Row> selectedColumns = dfWithNumeric.select("id", "titleLength", "Rating");
+
+       return selectedColumns;
+
     }
 }
