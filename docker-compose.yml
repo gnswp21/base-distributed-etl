@@ -48,6 +48,7 @@ services:
       - hdfs-journal3:/root/hadoop/hdfs/journal
       - zookeeper3:/var/lib/zookeeper
       - zookeeper-logs:/root/zookeeper/logs
+      - ./build/libs:/root/spark/apps
     networks:
       base-distributed-etl-network:
     command: [ "sh", "-c", "service ssh start;

@@ -14,6 +14,7 @@ ENV SPARK_HOME=/root/spark
 ENV PATH=$PATH:$SPARK_HOME/bin
 ENV LD_LIBRARY_PATH=$HADOOP_HOME/lib/native
 COPY spark-defaults.conf $SPARK_HOME/conf/spark-defaults.conf
+COPY log4j.properties $SPARK_HOME/conf/log4j.properties
 RUN mkdir $SPARK_HOME/logs
 WORKDIR $SPARK_HOME
 
