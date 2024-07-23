@@ -125,8 +125,16 @@ https://github.com/gnswp21/base-distributed-etl
     ```
 
 2. 스파크로 데이터 전처리 후 카프카에 전송
-    1. `docker exec -it resourcemanager bash`
-    2. /root/spark 디렉터리에서 다음 코드 실행
+    1. 카프카에 토픽 생성
+     ```bash
+    bin/kafka-topics.sh --create --topic webtoon-topic \
+    --bootstrap-server mykafka1:9092, mykafka2:9092, mykafka3:9092 \
+    --partitions 3 \
+    --replication-factor 3
+
+     ```
+    2. `docker exec -it resourcemanager bash`
+    3. /root/spark 디렉터리에서 다음 코드 실행
 
     ```bash
     spark-submit \
