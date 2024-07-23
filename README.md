@@ -121,7 +121,7 @@ https://github.com/gnswp21/base-distributed-etl
     2. /root 디렉토리에서 다음 코드 실행
 
     ```bash
-    hadoop jar apps/base-distributed-etl-1.0-SNAPSHOT.jar
+    hadoop jar apps/base-distributed-etl-1.0-SNAPSHOT.jar com.example.load.DataUploader2Hdfs
     ```
 
 2. 스파크로 데이터 전처리 후 카프카에 전송
