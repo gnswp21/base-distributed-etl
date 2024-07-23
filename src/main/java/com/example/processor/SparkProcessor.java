@@ -53,7 +53,10 @@ public class SparkProcessor {
     }
 
     public void saveDF2Hdfs(Dataset<Row> df, String filename){
-        df.write().format("csv").mode("overwrite").option("sep", "\t")
+        df.write()
+                .format("csv")
+                .mode("overwrite")
+                .option("sep", "\t")
                 .save("/data/" + filename);
     }
 
