@@ -18,3 +18,4 @@ RUN /bin/bash -c ". ~/.bashrc"
 # init kafka
 WORKDIR /root/kafka
 COPY kafka-init.sh /root/kafka/kafka-init.sh
+COPY kafka-restart.sh /root/kafka/kafka-restart.sh
