@@ -1,7 +1,7 @@
 for i in 1 2 3; do
   host="mykafka$i"
 
-  ssh -o StrictHostKeyChecking=no $host echo "\"brokers.id=$i\" >> /root/kafka/config/server.properties"
+  ssh -o StrictHostKeyChecking=no $host echo "\"broker.id=$i\" >> /root/kafka/config/server.properties"
   ssh $host mkdir -p /var/lib/zookeeper
   ssh $host echo "\"$i\" > /var/lib/zookeeper/myid"
 
