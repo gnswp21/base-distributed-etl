@@ -9,6 +9,7 @@ services:
       - zookeeper1:/var/lib/zookeeper
       - zookeeper-logs:/root/zookeeper/logs
       - data:/root/data
+      - ./build/libs:/root/apps
 
     networks:
       base-distributed-etl-network:
@@ -54,7 +55,6 @@ services:
   datanode1:
     image: datanode
     container_name: datanode1
-    ports:
     volumes:
       - hdfs-data1:/root/hadoop/hdfs/data
       - hdfs-logs:/root/hadoop/logs
@@ -66,7 +66,6 @@ services:
   datanode2:
     image: datanode
     container_name: datanode2
-    ports:
     volumes:
       - hdfs-data2:/root/hadoop/hdfs/data
       - hdfs-logs:/root/hadoop/logs
@@ -79,7 +78,6 @@ services:
   datanode3:
     image: datanode
     container_name: datanode3
-    ports:
     volumes:
       - hdfs-data3:/root/hadoop/hdfs/data
       - hdfs-logs:/root/hadoop/logs
